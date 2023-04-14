@@ -18,7 +18,7 @@ public struct MultilineTextField: View{
     private var textForegroundColor: Color = Color.black
     private var textFontSize: CGFloat = 15
     private var textPlaceholderOpacity: Double = 0.5
-    private var backgroundColor: Color = Color.gray.opacity(0.1)
+    private var backgroundColor: Color = Color.white
     
     ///Padding and corner radius values are set to paticular values to seamlessly show transition from "placeholder" to your input text. You can also set corner radius from 0 to 10.
     private var padding: CGFloat = 8
@@ -61,15 +61,16 @@ public struct MultilineTextField: View{
 public extension MultilineTextField{
     
     ///Creates an input text field with a placeholder. Container height initially set to fit one line. It expands/collapses on change of input text number of lines. You can also set maximum number of visible lines.
-    init(text: Binding<String>, placeholder: String, visibleLines: Int?){
+    init(text: Binding<String>, placeholder: String, visibleLines: Int?, backgroundColor: Color = Color.white){
         _text = text
         self.textPlaceholder = placeholder
         self.lineLimit = visibleLines
         self.expanded = false
+        self.backgroundColor = backgroundColor
     }
     
     ///Same as first init(), but with custom font setup
-    init(text: Binding<String>, placeholder: String, visibleLines: Int?, font: Font, pointSize: CGFloat, foregroundColor: Color){
+    init(text: Binding<String>, placeholder: String, visibleLines: Int?, font: Font, pointSize: CGFloat, foregroundColor: Color, backgroundColor: Color = Color.white){
         _text = text
         self.textPlaceholder = placeholder
         self.lineLimit = visibleLines
@@ -77,9 +78,10 @@ public extension MultilineTextField{
         self.textFont = font
         self.textForegroundColor = foregroundColor
         self.textFontSize = pointSize
+        self.backgroundColor = backgroundColor
     }
     
-    init(text: Binding<String>, placeholder: String, visibleLines: Int?, font: UIFont, foregroundColor: Color){
+    init(text: Binding<String>, placeholder: String, visibleLines: Int?, font: UIFont, foregroundColor: Color, backgroundColor: Color = Color.white){
         _text = text
         self.textPlaceholder = placeholder
         self.lineLimit = visibleLines
@@ -87,17 +89,19 @@ public extension MultilineTextField{
         self.textFont = Font(font)
         self.textForegroundColor = foregroundColor
         self.textFontSize = font.pointSize
+        self.backgroundColor = backgroundColor
     }
     
     ///Creates an input text field with a placeholder. Container height initialy set to fit maximum visible lines.
-    init(textInExpandedContainer: Binding<String>, placeholder: String, visibleLines: Int){
+    init(textInExpandedContainer: Binding<String>, placeholder: String, visibleLines: Int, backgroundColor: Color = Color.white){
         _text = textInExpandedContainer
         self.textPlaceholder = placeholder
         self.lineLimit = visibleLines
         self.expanded = true
+        self.backgroundColor = backgroundColor
     }
     
-    init(textInExpandedContainer: Binding<String>, placeholder: String, visibleLines: Int?, font: Font, pointSize: CGFloat, foregroundColor: Color){
+    init(textInExpandedContainer: Binding<String>, placeholder: String, visibleLines: Int?, font: Font, pointSize: CGFloat, foregroundColor: Color, backgroundColor: Color = Color.white){
         _text = textInExpandedContainer
         self.textPlaceholder = placeholder
         self.lineLimit = visibleLines
@@ -105,9 +109,10 @@ public extension MultilineTextField{
         self.textFont = font
         self.textForegroundColor = foregroundColor
         self.textFontSize = pointSize
+        self.backgroundColor = backgroundColor
     }
     
-    init(textInExpandedContainer: Binding<String>, placeholder: String, visibleLines: Int?, font: UIFont, foregroundColor: Color){
+    init(textInExpandedContainer: Binding<String>, placeholder: String, visibleLines: Int?, font: UIFont, foregroundColor: Color, backgroundColor: Color = Color.white){
         _text = textInExpandedContainer
         self.textPlaceholder = placeholder
         self.lineLimit = visibleLines
@@ -115,6 +120,7 @@ public extension MultilineTextField{
         self.textFont = Font(font)
         self.textForegroundColor = foregroundColor
         self.textFontSize = font.pointSize
+        self.backgroundColor = backgroundColor
     }
     
 }
@@ -128,5 +134,9 @@ extension MultilineTextField{
     
     mutating func foregroundColor(_ color: Color){
         self.textForegroundColor = color
+    }
+    
+    mutating func backgroundColor(_ color: Color){
+        self.backgroundColor = color
     }
 }
