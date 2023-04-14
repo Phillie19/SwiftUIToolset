@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum InputFieldType{
+public enum InputFieldType{
     case login
     case secured
     case alphabetic
@@ -18,15 +18,15 @@ enum InputFieldType{
     case postalCode
 }
 
-extension InputFieldType: Equatable{}
+public extension InputFieldType: Equatable{}
 
-enum NameType{
+public enum NameType{
     case first
     case middle
     case last
 }
 
-extension NameType{
+public extension NameType{
     var contentType: UITextContentType{
         switch self{
         case .first: return .givenName
@@ -36,14 +36,14 @@ extension NameType{
     }
 }
 
-enum AddressType{
+public enum AddressType{
     case country
     case region
     case city
     case street
 }
 
-extension AddressType{
+public extension AddressType{
     var contentType: UITextContentType{
         switch self{
         case .country: return .countryName

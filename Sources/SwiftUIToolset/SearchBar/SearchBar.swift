@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchBar: View{
+public struct SearchBar: View{
     
     var search: Binding<String>
     var placeholder: String = "Search"
@@ -22,9 +22,7 @@ struct SearchBar: View{
     var textForegroundColor: Color = Color.black
     
     var backgroundColor: Color = Color.gray.opacity(0.1)
-    var elementForegroundColor: Color {
-        textForegroundColor.opacity(0.2)
-    }
+    var elementForegroundColor: Color = Color.gray.opacity(0.2)
     
     @State private var isEditing = false
     
@@ -79,11 +77,29 @@ struct SearchBar: View{
     }
 }
 
-extension SearchBar{
+public extension SearchBar{
 
     init(search: Binding<String>, placeholder: String){
         self.search = search
         self.placeholder = placeholder
+    }
+    
+    init(search: Binding<String>, placeholder: String, textColor: Color, UIElementsColor: Color, backgroundColor: Color){
+        self.search = search
+        self.placeholder = placeholder
+        self.textForegroundColor = textColor
+        self.backgroundColor = backgroundColor
+        self.elementForegroundColor = UIElementsColor
+    }
+    
+    init(search: Binding<String>, placeholder: String, customFontName: String, customFontSize: CGFloat, textColor: Color, UIElementsColor: Color, backgroundColor: Color){
+        self.search = search
+        self.placeholder = placeholder
+        self.textCustomFontName = customFontName
+        self.textFontSize = customFontSize
+        self.textForegroundColor = textColor
+        self.backgroundColor = backgroundColor
+        self.elementForegroundColor = UIElementsColor
     }
     
 }

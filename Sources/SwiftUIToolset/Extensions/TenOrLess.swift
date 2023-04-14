@@ -8,7 +8,7 @@
 import SwiftUI
 
 @propertyWrapper
-struct TenOrLess {
+public struct TenOrLess {
     private var number: CGFloat = 0
     var wrappedValue: CGFloat {
         get { return number }

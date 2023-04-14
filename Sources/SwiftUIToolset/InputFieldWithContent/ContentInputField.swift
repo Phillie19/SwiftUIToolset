@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentInputField: View{
+public struct ContentInputField: View{
     
     var type: InputFieldType
     var text: Binding<String>
@@ -155,7 +155,7 @@ struct ContentInputField: View{
 }
 
 
-extension ContentInputField{
+public extension ContentInputField{
     
     init(text: Binding<String>, placeholder: String, validationError: String){
         self.type = .alphabetic
@@ -169,6 +169,16 @@ extension ContentInputField{
         self.text = text
         self.textFieldPlaceholder = placeholder
         self.validationError = validationError
+    }
+    
+    init(type: InputFieldType, text: Binding<String>, placeholder: String, validationError: String, customFont: String, textCustomFontSize: CGFloat, errorCustomFontSize: CGFloat){
+        self.type = type
+        self.text = text
+        self.textFieldPlaceholder = placeholder
+        self.validationError = validationError
+        self.textCustomFontName = customFont
+        self.textFontSize = textCustomFontSize
+        self.errorFontSize = errorCustomFontSize
     }
     
 }

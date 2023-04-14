@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View{
+public extension View{
     
     func calculateViewSize(_ callback: @escaping (CGSize) -> Void) -> some View{
         modifier(ViewSizeCalculator(callback: callback))

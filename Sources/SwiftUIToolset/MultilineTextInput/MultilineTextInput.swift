@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MultilineTextField: View{
+public struct MultilineTextField: View{
 
     @Binding var text: String
     let textPlaceholder: String
@@ -66,7 +66,7 @@ struct MultilineTextField: View{
 
 }
 
-extension MultilineTextField{
+public extension MultilineTextField{
     
     ///Creates an input text field with a placeholder. Container height initially set to fit one line. It expands/collapses on change of input text number of lines. You can also set maximum number of visible lines.
     init(text: Binding<String>, placeholder: String, visibleLines: Int?){
@@ -85,12 +85,13 @@ extension MultilineTextField{
     }
     
     ///Same as first init(), but with custom font setup
-    init(text: Binding<String>, placeholder: String, visibleLines: Int?, customFont: String, customFontSize: CGFloat){
+    init(text: Binding<String>, placeholder: String, visibleLines: Int?, customFont: String, customFontSize: CGFloat, textColor: Color){
         _text = text
         self.textPlaceholder = placeholder
         self.lineLimit = visibleLines
         self.expanded = false
         self.textCustomFontName = customFont
+        self.textForegroundColor = textColor
         self.textFontSize = customFontSize
     }
     
