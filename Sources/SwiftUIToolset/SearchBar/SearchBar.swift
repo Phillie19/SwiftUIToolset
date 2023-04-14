@@ -9,36 +9,34 @@ import SwiftUI
 
 public struct SearchBar: View{
     
-    var search: Binding<String>
-    var placeholder: String = "Search"
+    private var search: Binding<String>
+    private var placeholder: String = "Search"
     
-    var padding: CGFloat = 8
-    @TenOrLess var cornerRadius: CGFloat = 10
+    private var padding: CGFloat = 8
+    @TenOrLess private var cornerRadius: CGFloat = 10
     
-    var textCustomFontName: String = ""
-    var textFontSize: CGFloat = 15
-    var textFontWeight: Font.Weight = .regular
-    var textFontDesign: Font.Design = .default
-    var textForegroundColor: Color = Color.black
+    private var textFont: Font = Font.system(size: 15)
+    private var textForegroundColor: Color = Color.black
     
-    var backgroundColor: Color = Color.gray.opacity(0.1)
-    var elementForegroundColor: Color = Color.gray.opacity(0.2)
-    var showBorder: Bool = false
+    private var backgroundColor: Color = Color.white
+    private var elementForegroundColor: Color = Color.gray.opacity(0.3)
+    
+    private var showsBorder: Bool = false
     
     @State private var isEditing = false
     
-    private var textFont: Font{
-        return textCustomFontName.isEmpty ? Font.system(size: textFontSize, weight: textFontWeight, design: textFontDesign) : Font.custom(textCustomFontName, size: textFontSize)
+    public var body: some View{
+        searchBar
     }
     
-    public var body: some View{
+    private var searchBar: some View{
         HStack(spacing: 8){
             HStack(spacing: 8){
                 Image(systemName: "magnifyingglass")
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(elementForegroundColor)
-                    .frame(width: textFontSize, height: textFontSize)
+                    .frame(width: 16, height: 16)
                     .padding(.leading, padding)
                 TextField(placeholder, text: search)
                     .font(textFont)
@@ -59,7 +57,7 @@ public struct SearchBar: View{
                 }
             }
             .background(
-                RoundedRectangle(cornerRadius: cornerRadius).fill(backgroundColor, strokeBorder: showBorder ? elementForegroundColor : Color.clear, lineWidth: 1)
+                RoundedRectangle(cornerRadius: cornerRadius).fill(backgroundColor, strokeBorder: showsBorder ? elementForegroundColor : Color.clear, lineWidth: 1)
             )
             .onTapGesture { withAnimation {self.isEditing = true}}
             if isEditing {
@@ -85,25 +83,56 @@ public extension SearchBar{
         self.placeholder = placeholder
     }
     
-    init(search: Binding<String>, placeholder: String = "Search", textColor: Color, UIElementsColor: Color, backgroundColor: Color, showBorder: Bool = false){
+    init(search: Binding<String>, placeholder: String = "Search", font: Font, foregroundColor: Color){
         self.search = search
         self.placeholder = placeholder
-        self.textForegroundColor = textColor
-        self.backgroundColor = backgroundColor
-        self.elementForegroundColor = UIElementsColor
-        self.showBorder = showBorder
+        self.textFont = font
+        self.textForegroundColor = foregroundColor
     }
     
-    init(search: Binding<String>, placeholder: String = "Search", customFontName: String, customFontSize: CGFloat, textColor: Color, UIElementsColor: Color, backgroundColor: Color, showBorder: Bool = false){
+    init(search: Binding<String>, placeholder: String = "Search", font: Font, foregroundColor: Color, backgroundColor: Color, UIElementsColor: Color, showsBorder: Bool = false){
         self.search = search
         self.placeholder = placeholder
-        self.textCustomFontName = customFontName
-        self.textFontSize = customFontSize
-        self.textForegroundColor = textColor
+        self.textFont = font
+        self.textForegroundColor = foregroundColor
         self.backgroundColor = backgroundColor
         self.elementForegroundColor = UIElementsColor
-        self.showBorder = showBorder
+        self.showsBorder = showsBorder
+    }
+    
+    init(search: Binding<String>, placeholder: String = "Search", font: UIFont, foregroundColor: Color){
+        self.search = search
+        self.placeholder = placeholder
+        self.textFont = Font(font)
+        self.textForegroundColor = foregroundColor
+    }
+    
+    init(search: Binding<String>, placeholder: String = "Search", font: UIFont, foregroundColor: Color, backgroundColor: Color, UIElementsColor: Color, showsBorder: Bool = false){
+        self.search = search
+        self.placeholder = placeholder
+        self.textFont = Font(font)
+        self.textForegroundColor = foregroundColor
+        self.backgroundColor = backgroundColor
+        self.elementForegroundColor = UIElementsColor
+        self.showsBorder = showsBorder
     }
     
 }
+
+public extension SearchBar{
+    
+    mutating func font(_ font: Font){
+        self.textFont = font
+    }
+    
+    mutating func foregroundColor(_ color: Color){
+        self.textForegroundColor = color
+    }
+    
+    mutating func showsBorder(_ state: Bool){
+        self.showsBorder = state
+    }
+    
+}
+
 
