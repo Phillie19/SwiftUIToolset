@@ -20,7 +20,7 @@ public struct SearchBar: View{
     
     private var backgroundColor: Color = Color.white
     private var elementForegroundColor: Color = Color.gray.opacity(0.3)
-    
+    private var elementSize: CGFloat = 16
     private var showsBorder: Bool = false
     
     @State private var isEditing = false
@@ -36,7 +36,7 @@ public struct SearchBar: View{
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(elementForegroundColor)
-                    .frame(width: 16, height: 16)
+                    .frame(width: elementSize, height: elementSize)
                     .padding(.leading, padding)
                 TextField(placeholder, text: search)
                     .font(textFont)
@@ -51,7 +51,7 @@ public struct SearchBar: View{
                             .resizable()
                             .scaledToFit()
                             .foregroundColor(elementForegroundColor)
-                            .frame(width: 16, height: 16)
+                            .frame(width: elementSize, height: elementSize)
                     })
                     .padding(.trailing, padding)
                 }
@@ -105,6 +105,7 @@ public extension SearchBar{
         self.placeholder = placeholder
         self.textFont = Font(font)
         self.textForegroundColor = foregroundColor
+        self.elementSize = font.pointSize
     }
     
     init(search: Binding<String>, placeholder: String = "Search", font: UIFont, foregroundColor: Color, backgroundColor: Color, UIElementsColor: Color, showsBorder: Bool = false){
@@ -114,6 +115,7 @@ public extension SearchBar{
         self.textForegroundColor = foregroundColor
         self.backgroundColor = backgroundColor
         self.elementForegroundColor = UIElementsColor
+        self.elementSize = font.pointSize
         self.showsBorder = showsBorder
     }
     
@@ -131,6 +133,10 @@ public extension SearchBar{
     
     mutating func showsBorder(_ state: Bool){
         self.showsBorder = state
+    }
+    
+    mutating func UIElementsSize(_ size: CGFloat){
+        self.elementSize = size
     }
     
 }
