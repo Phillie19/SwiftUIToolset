@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchBar: View{
     
     var search: Binding<String>
-    let placeholder: String
+    var placeholder: String = "Search"
     
     var padding: CGFloat = 8
     @TenOrLess var cornerRadius: CGFloat = 10
@@ -81,7 +81,7 @@ struct SearchBar: View{
 
 extension SearchBar{
 
-    init(search: Binding<String>, placeholder: String = "Search"){
+    init(search: Binding<String>, placeholder: String){
         self.search = search
         self.placeholder = placeholder
     }
