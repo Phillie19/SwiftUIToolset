@@ -10,28 +10,20 @@ import SwiftUI
 public struct MultilineTextField: View{
 
     @Binding var text: String
-    let textPlaceholder: String
-    var lineLimit: Int? = nil
-    var expanded: Bool = false
+    private let textPlaceholder: String
+    private var lineLimit: Int? = nil
+    private var expanded: Bool = false
     
-    /// Padding and corner radius values are set to paticular values to seamlessly show transition from "placeholder" to your input text. You can also set corner radius from 0 to 10.
+    private var textFont: Font = Font.system(size: 15)
+    private var textForegroundColor: Color = Color.black
+    private var textFontSize: CGFloat = 15
+    private var textPlaceholderOpacity: Double = 0.5
+    private var backgroundColor: Color = Color.gray.opacity(0.1)
+    
+    ///Padding and corner radius values are set to paticular values to seamlessly show transition from "placeholder" to your input text. You can also set corner radius from 0 to 10.
     private var padding: CGFloat = 8
-    @TenOrLess var cornerRadius: CGFloat = 10
-    
-    var textCustomFontName: String = ""
-    var textFontSize: CGFloat = 15
-    var textFontWeight: Font.Weight = .regular
-    var textFontDesign: Font.Design = .default
-    var textForegroundColor: Color = Color.black
-    var textPlaceholderOpacity: Double = 0.5
-    var backgroundColor: Color = Color.gray.opacity(0.1)
-    
-    @State var textEditorHeight: CGFloat = 0
-
-    
-    private var textFont: Font{
-        return textCustomFontName.isEmpty ? Font.system(size: textFontSize, weight: textFontWeight, design: textFontDesign) : Font.custom(textCustomFontName, size: textFontSize)
-    }
+    @TenOrLess private var cornerRadius: CGFloat = 10
+    @State private var textEditorHeight: CGFloat = 0
     
     private var containerMinHeight: CGFloat{
         guard let limit = lineLimit, expanded == true else { return 0}
@@ -85,15 +77,36 @@ public extension MultilineTextField{
     }
     
     ///Same as first init(), but with custom font setup
-    init(text: Binding<String>, placeholder: String, visibleLines: Int?, customFont: String, customFontSize: CGFloat, textColor: Color){
+    init(text: Binding<String>, placeholder: String, visibleLines: Int?, font: UIFont, foregroundColor: Color){
         _text = text
         self.textPlaceholder = placeholder
         self.lineLimit = visibleLines
         self.expanded = false
-        self.textCustomFontName = customFont
-        self.textForegroundColor = textColor
-        self.textFontSize = customFontSize
+        self.textFont = Font(font)
+        self.textForegroundColor = foregroundColor
+        self.textFontSize = font.pointSize
+    }
+    
+    init(text: Binding<String>, placeholder: String, visibleLines: Int?, font: Font, pointSize: CGFloat, foregroundColor: Color){
+        _text = text
+        self.textPlaceholder = placeholder
+        self.lineLimit = visibleLines
+        self.expanded = false
+        self.textFont = font
+        self.textForegroundColor = foregroundColor
+        self.textFontSize = pointSize
     }
     
 }
 
+
+extension MultilineTextField{
+    
+    mutating func font(_ font: Font){
+        self.textFont = font
+    }
+    
+    mutating func foregroundColor(_ color: Color){
+        self.textForegroundColor = color
+    }
+}

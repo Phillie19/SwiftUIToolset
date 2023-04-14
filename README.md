@@ -14,15 +14,18 @@ MultilineTextField is a convenient representation of the TextEditor:
 - Supports custom and system fonts  
 - Placeholder available   
 - Configurable background and foreground colors  
+- UIFonts and SwiftUI Fonts support  
 
-## ContentInputField  
+## ContentTextField  
 ContentInputField fully preconfigured TextField with specific UITextContentType:  
 - Supports dozen of UITextContentType  
-- Optional error handling  
+- Optional error handling   
 - Show/hide password functionality  
+- UIFonts and SwiftUI Fonts support  
 
 ## SearchBar  
 SearchBar is just a fully customizable SwiftUI representation of default UISearchBar:  
 - Configurable placeholder  
 - Supports custom and system fonts  
 - Configurable background and foreground colors  
+- UIFonts and SwiftUI Fonts support   
