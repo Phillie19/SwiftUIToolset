@@ -43,7 +43,7 @@ public struct ContentInputField: View{
         return textCustomFontName.isEmpty ? Font.system(size: errorFontSize, weight: errorFontWeight, design: errorFontDesign) : Font.custom(textCustomFontName, size: errorFontSize)
     }
     
-    var body: some View{
+    public var body: some View{
         HStack(spacing:0){
             VStack(alignment: .leading, spacing:0){
                 textField

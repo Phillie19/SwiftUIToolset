@@ -38,7 +38,7 @@ public struct MultilineTextField: View{
         return CGFloat((limit + 1) * Int(textFontSize))
     }
 
-    var body: some View {
+    public var body: some View {
         ZStack(alignment: .topLeading) {
             Text(text.isEmpty ? textPlaceholder : text)
                 .font(textFont)

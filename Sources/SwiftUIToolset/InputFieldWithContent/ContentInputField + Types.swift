@@ -18,7 +18,7 @@ public enum InputFieldType{
     case postalCode
 }
 
-public extension InputFieldType: Equatable{}
+extension InputFieldType: Equatable{}
 
 public enum NameType{
     case first
