@@ -26,7 +26,7 @@ public struct MultilineTextField: View{
     @State private var textEditorHeight: CGFloat = 0
     
     private var containerMinHeight: CGFloat{
-        guard let limit = lineLimit, expanded == true else { return 0}
+        guard let limit = lineLimit, expanded == true else {return 0}
         return CGFloat((limit + 1) * Int(textFontSize))
     }
 
@@ -68,15 +68,17 @@ public extension MultilineTextField{
         self.expanded = false
     }
     
-    ///Creates an input text field with a placeholder. Container height initialy set to fit maximum visible lines.
-    init(textInExpandedContainer: Binding<String>, placeholder: String, visibleLines: Int){
-        _text = textInExpandedContainer
+    ///Same as first init(), but with custom font setup
+    init(text: Binding<String>, placeholder: String, visibleLines: Int?, font: Font, pointSize: CGFloat, foregroundColor: Color){
+        _text = text
         self.textPlaceholder = placeholder
         self.lineLimit = visibleLines
-        self.expanded = true
+        self.expanded = false
+        self.textFont = font
+        self.textForegroundColor = foregroundColor
+        self.textFontSize = pointSize
     }
     
-    ///Same as first init(), but with custom font setup
     init(text: Binding<String>, placeholder: String, visibleLines: Int?, font: UIFont, foregroundColor: Color){
         _text = text
         self.textPlaceholder = placeholder
@@ -87,14 +89,32 @@ public extension MultilineTextField{
         self.textFontSize = font.pointSize
     }
     
-    init(text: Binding<String>, placeholder: String, visibleLines: Int?, font: Font, pointSize: CGFloat, foregroundColor: Color){
-        _text = text
+    ///Creates an input text field with a placeholder. Container height initialy set to fit maximum visible lines.
+    init(textInExpandedContainer: Binding<String>, placeholder: String, visibleLines: Int){
+        _text = textInExpandedContainer
         self.textPlaceholder = placeholder
         self.lineLimit = visibleLines
-        self.expanded = false
+        self.expanded = true
+    }
+    
+    init(textInExpandedContainer: Binding<String>, placeholder: String, visibleLines: Int?, font: Font, pointSize: CGFloat, foregroundColor: Color){
+        _text = textInExpandedContainer
+        self.textPlaceholder = placeholder
+        self.lineLimit = visibleLines
+        self.expanded = true
         self.textFont = font
         self.textForegroundColor = foregroundColor
         self.textFontSize = pointSize
+    }
+    
+    init(textInExpandedContainer: Binding<String>, placeholder: String, visibleLines: Int?, font: UIFont, foregroundColor: Color){
+        _text = textInExpandedContainer
+        self.textPlaceholder = placeholder
+        self.lineLimit = visibleLines
+        self.expanded = true
+        self.textFont = Font(font)
+        self.textForegroundColor = foregroundColor
+        self.textFontSize = font.pointSize
     }
     
 }
