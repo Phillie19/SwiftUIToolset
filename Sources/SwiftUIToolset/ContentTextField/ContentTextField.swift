@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct ContentTextField: View{
     
-    private var type: InputFieldType
+    private var type: ContentType
     private var text: Binding<String>
     private let textFieldPlaceholder: String
     private var validationError: String
@@ -149,7 +149,7 @@ public extension ContentTextField{
         self.validationError = validationError
     }
     
-    init(type: InputFieldType, text: Binding<String>, placeholder: String, validationError: String){
+    init(type: ContentType, text: Binding<String>, placeholder: String, validationError: String){
         self.type = type
         self.text = text
         self.textFieldPlaceholder = placeholder
@@ -157,7 +157,7 @@ public extension ContentTextField{
     }
     
     
-    init(type: InputFieldType, text: Binding<String>, placeholder: String, validationError: String, font: Font, foregroundColor: Color, errorFont: Font, errorForegroundColor: Color){
+    init(type: ContentType, text: Binding<String>, placeholder: String, validationError: String, font: Font, foregroundColor: Color, errorFont: Font, errorForegroundColor: Color){
         self.type = type
         self.text = text
         self.textFieldPlaceholder = placeholder
@@ -180,7 +180,7 @@ public extension ContentTextField{
         self.errorForegroundColor = errorForegroundColor
     }
     
-    init(type: InputFieldType, text: Binding<String>, placeholder: String, validationError: String, font: UIFont, foregroundColor: Color,  errorFont: UIFont, errorForegroundColor: Color){
+    init(type: ContentType, text: Binding<String>, placeholder: String, validationError: String, font: UIFont, foregroundColor: Color,  errorFont: UIFont, errorForegroundColor: Color){
         self.type = type
         self.text = text
         self.textFieldPlaceholder = placeholder

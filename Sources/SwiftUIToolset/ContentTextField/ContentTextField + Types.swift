@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public enum InputFieldType{
+public enum ContentType{
     case login
     case secured
     case alphabetic
@@ -18,7 +18,7 @@ public enum InputFieldType{
     case postalCode
 }
 
-extension InputFieldType: Equatable{}
+extension ContentType: Equatable{}
 
 public enum NameType{
     case first
