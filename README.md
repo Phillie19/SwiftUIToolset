@@ -7,10 +7,12 @@ SwiftUI elements and tools that can make life simpler
 2.ContentInputField  
 3.SearchBar  
 4.CacheableImage
+5.RefreshableScrollView  
 
 ## Featured extensions:
 1. View size calculator
-2. View shaper with some custom shapes added (more in the future)
+2. View shaper with some custom shapes added (more in the future)  
+3. Handy PrefenceKeys and ViewModificators (tracking scroll view movement, sticking to the top of the scroll view (e.g. stretching header image), calculating fixed coordinates position)
 
 ## MultilineTextField
 MultilineTextField is a convenient representation of the TextEditor:  
@@ -42,3 +44,7 @@ CacheableImage is a convenient representation of AsyncImage (no need to update t
 - Default and custom placeholders are supported  
 - A lot of build-in clipShapes supported
 
+## RefreshableScrollView  
+RefreshableScrollView is a solution for refreshing Content in ScrollView (no need to use SwiftUI Lists)
+- Custom SwiftUI refreshing indicator with rotating animation  
+- Customizable vibration on refresh action   
